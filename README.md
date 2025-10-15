@@ -56,7 +56,7 @@ npm install next next-auth @prisma/client prisma @next-auth/prisma-adapter bcryp
 In the root folder, create a `.env` file and add:
 
 ```env
-DATABASE_URL="mysql://root:@localhost:3306/team_task_tracker_db"
+DATABASE_URL="mysql://root:@localhost:3306/team_task_tracker"
 NEXTAUTH_SECRET="your-random-secret"
 NEXTAUTH_URL="http://localhost:3000"
 ```
