@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-	title: "Team Task Manager",
+	title: "Trackify",
 	description: "Team Task Manager Platform Internal",
 };
 
