@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+````markdown
+# Team Task Tracker
 
-## Getting Started
+A simple task management web app using **Next.js (App Router)**, **Prisma ORM**, **NextAuth**, and **MySQL (XAMPP)**.
 
-First, run the development server:
+---
+
+## 1. Tech Stack
+
+- Next.js 15 (App Router)
+- Prisma ORM
+- NextAuth.js (For Authentication)
+- MySQL (via XAMPP)
+- Tailwind CSS
+- JavaScript
+
+---
+
+## 2. Prerequisites
+
+Make sure these are installed:
+
+- Node.js v18 or above
+- XAMPP (for Apache and MySQL)
+- Git
+
+---
+
+## 3. Setup Guide
+
+### Step 1 – Clone Project
+
+```bash
+git clone https://github.com/<your-username>/team-task-tracker.git
+cd team-task-tracker
+```
+````
+
+### Step 2 – Install Dependencies
+
+```bash
+npm install
+npm install next-auth @prisma/client prisma bcryptjs react react-dom next tailwindcss postcss autoprefixer
+```
+
+### Step 3 – Setup MySQL Database
+
+1. Start **Apache** and **MySQL** in XAMPP.
+2. Go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
+3. Create a database named:
+
+   ```
+   team_task_tracker_db
+   ```
+
+### Step 4 – Create `.env` File
+
+In the root folder, create a `.env` file and add:
+
+```env
+DATABASE_URL="mysql://root:@localhost:3306/team_task_tracker_db"
+NEXTAUTH_SECRET="your-random-secret"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+> If you use a MySQL password, add it after `root:` (example: `mysql://root:password@localhost:3306/team_task_tracker_db`)
+
+### Step 5 – Setup Prisma
+
+```bash
+npx prisma generate
+npx prisma migrate dev --name init
+```
+
+---
+
+## 4. Run the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
+[http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 5. Usage
 
-## Learn More
+- Go to `/page/signup` to create an account.
+- Go to `/page/login` to log in.
+- After logging in, you’ll be redirected to `/dashboard`.
 
-To learn more about Next.js, take a look at the following resources:
+### On the Dashboard:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Add new tasks
+- Update task status (Belum Dimulai → Sedang Dikerjakan → Selesai)
+- Delete tasks
+- View task logs
+- Filter tasks by status
+- View summary counts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 6. Auth Protection
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Routes `/` and `/page/dashboard` are protected.
+If not logged in, user will be redirected to `/page/login`.
