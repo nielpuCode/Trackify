@@ -38,7 +38,7 @@ cd Trackify
 
 ```bash
 npm install
-npm install next next-auth @prisma/client prisma @next-auth/prisma-adapter bcryptjs lucide-react
+npm install next next-auth @prisma/client prisma @next-auth/prisma-adapter bcryptjs lucide-react react-hot-toast
 ```
 
 ### Step 3 – Setup MySQL Database

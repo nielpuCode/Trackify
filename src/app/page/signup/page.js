@@ -41,7 +41,7 @@ export default function SignupPage() {
 	}
 
 	return (
-		<div className="flex items-center justify-center min-h-fit bg-surface px-4 py-8">
+		<div className="flex items-center justify-center min-h-fit bg-surface px-4 py-8 border-0">
 			<div className="w-full max-w-md">
 				{/* Logo/Brand Section */}
 				<div className="text-center mb-8">
@@ -60,14 +60,13 @@ export default function SignupPage() {
 							/>
 						</svg>
 					</div>
-					<h1 className="text-3xl font-bold text-text mb-2">Create account</h1>
-					<p className="text-muted text-sm">
-						Get started with your free account
-					</p>
+					<h1 className="text-3xl font-bold text-text mb-2">
+						Create Manager Account
+					</h1>
 				</div>
 
 				{/* Card */}
-				<div className="bg-card rounded-3xl shadow-sm border border-border p-8">
+				<div className="bg-card rounded-3xl shadow-sm border border-border p-8 pb-3">
 					<form onSubmit={handleSubmit} className="space-y-5">
 						<div className="space-y-2">
 							<label className="block text-sm font-medium text-text">
@@ -109,7 +108,7 @@ export default function SignupPage() {
 								placeholder="••••••••"
 								required
 							/>
-							<p className="text-xs text-muted mt-1">
+							<p className="text-xs text-muted">
 								Must be at least 8 characters
 							</p>
 						</div>
@@ -151,7 +150,7 @@ export default function SignupPage() {
 						<button
 							type="submit"
 							disabled={isLoading}
-							className="w-full bg-gradient-to-r from-accent to-accent-light text-white font-medium px-4 py-3 rounded-xl hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+							className="w-full bg-gradient-to-r from-accent to-accent-light text-white font-medium px-4 py-3 rounded-xl hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer"
 						>
 							{isLoading ? (
 								<span className="flex items-center justify-center gap-2">
@@ -180,17 +179,6 @@ export default function SignupPage() {
 								"Create account"
 							)}
 						</button>
-
-						<div className="relative py-4">
-							<div className="absolute inset-0 flex items-center">
-								<div className="w-full border-t border-border"></div>
-							</div>
-							<div className="relative flex justify-center text-xs">
-								<span className="bg-card px-4 text-muted">
-									By signing up, you agree to our Terms
-								</span>
-							</div>
-						</div>
 					</form>
 				</div>
 

@@ -81,12 +81,6 @@ export default function LoginPage() {
 								<label className="block text-sm font-medium text-text">
 									Password
 								</label>
-								<button
-									type="button"
-									className="text-xs text-accent hover:text-accent-light transition-colors"
-								>
-									Forgot?
-								</button>
 							</div>
 							<input
 								type="password"

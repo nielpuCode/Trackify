@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
-import { LogOut, LogIn, UserPlus, Menu, X } from "lucide-react";
+import { LogOut, LogIn, UserPlus, Menu, X, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -12,113 +12,162 @@ export default function Navbar() {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
-		<nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-border">
-			<div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
-				{/* Left Section: Logo + Brand */}
-				<Link href="/" className="flex items-center gap-2 group">
-					<div className="relative w-9 h-9">
-						<Image
-							src="/main-logo.png"
-							alt="Trackify Logo"
-							fill
-							className="object-contain transition-transform duration-200 group-hover:scale-105 rounded-full"
-							sizes="40px"
-							priority
-						/>
+		<>
+			{/* Floating Navbar */}
+			<div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full bg-white/80">
+				<nav className="mx-auto  backdrop-blur-xl border-0 shadow-2xl shadow-violet-500/10 px-6 py-3 w-[90%]">
+					<div className="flex justify-between items-center">
+						{/* Logo Side */}
+						<Link href="/" className="flex items-center gap-3 group">
+							<div className="relative">
+								<div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-50 transition"></div>
+								<div className="relative w-11 h-11 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full p-0.5">
+									<div className="w-full h-full bg-white rounded-full p-1.5">
+										<Image
+											src="/main-logo.png"
+											alt="Trackify"
+											fill
+											className="object-contain"
+											sizes="44px"
+											priority
+										/>
+									</div>
+								</div>
+							</div>
+
+							<div className="block">
+								<div className="text-lg font-bold tracking-tight text-gray-900">
+									Trackify
+								</div>
+								<div className="text-xs text-violet-600 -mt-1">
+									Track Everything
+								</div>
+							</div>
+						</Link>
+
+						<div className="hidden md:flex items-center gap-2">
+							{status === "loading" ? (
+								<div className="px-4 py-2">
+									<div className="flex gap-1">
+										<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce"></div>
+										<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce delay-100"></div>
+										<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce delay-200"></div>
+									</div>
+								</div>
+							) : session?.user ? (
+								<>
+									<div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-violet-50 to-purple-50 rounded-full">
+										<Sparkles className="w-3.5 h-3.5 text-violet-600" />
+										<span className="text-sm font-medium text-gray-800">
+											Hi, {session.user.name}
+										</span>
+									</div>
+									<button
+										onClick={() => signOut({ callbackUrl: "/page/login" })}
+										className="px-4 py-1.5 text-sm font-medium text-red-600 hover:text-white hover:bg-red-500 rounded-full border border-red-200 hover:border-red-500 transition-all duration-200 cursor-pointer"
+									>
+										Logout
+									</button>
+								</>
+							) : (
+								<>
+									<Link
+										href="/page/login"
+										className="px-4 cursor-pointer py-1.5 text-sm font-medium text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-full transition-all"
+									>
+										Login
+									</Link>
+									<Link
+										href="/page/signup"
+										className="relative cursor-pointer px-5 py-1.5 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 rounded-full shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-200"
+									>
+										<span className="relative z-10 flex items-center gap-1.5">
+											<UserPlus className="w-4 h-4" />
+											Sign Up
+										</span>
+									</Link>
+								</>
+							)}
+						</div>
+
+						{/* Hamburger Button */}
+						<button
+							onClick={() => setMenuOpen(!menuOpen)}
+							className="md:hidden p-2 hover:bg-gray-100 rounded-xl transition-colors cursor-pointer"
+						>
+							{menuOpen ? (
+								<X className="w-5 h-5 text-gray-700" />
+							) : (
+								<Menu className="w-5 h-5 text-gray-700" />
+							)}
+						</button>
 					</div>
-					<span className="text-lg sm:text-xl font-bold tracking-tight group-hover:text-accent-light text-accent transition-colors italic">
-						Trackify
-					</span>
-				</Link>
-
-				{/* Desktop Nav */}
-				<div className="hidden md:flex items-center gap-5">
-					{status === "loading" ? (
-						<p className="text-gray-400 text-sm">Loading...</p>
-					) : session?.user ? (
-						<>
-							<span className="text-sm text-gray-700">
-								👋 Hello, <strong>{session.user.name}</strong>
-							</span>
-							<button
-								onClick={() => signOut({ callbackUrl: "/page/login" })}
-								className="flex items-center gap-1 text-sm font-medium text-danger hover:text-red-600 bg-red-50 px-3 py-1.5 rounded-lg transition-all duration-200"
-							>
-								<LogOut className="w-4 h-4" />
-								Logout
-							</button>
-						</>
-					) : (
-						<>
-							<Link
-								href="/page/login"
-								className="flex items-center gap-1 text-sm text-gray-700 hover:text-accent transition-colors"
-							>
-								<LogIn className="w-4 h-4" />
-								Login
-							</Link>
-							<Link
-								href="/page/signup"
-								className="flex items-center gap-1 text-sm text-gray-700 hover:text-accent transition-colors"
-							>
-								<UserPlus className="w-4 h-4" />
-								Signup
-							</Link>
-						</>
-					)}
-				</div>
-
-				{/* Mobile Menu Button */}
-				<button
-					onClick={() => setMenuOpen(!menuOpen)}
-					className="md:hidden text-gray-700 hover:text-accent transition-colors"
-				>
-					{menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-				</button>
+				</nav>
 			</div>
 
-			{/* Mobile Dropdown */}
+			{/* Mobile Dropdown Menu */}
 			{menuOpen && (
-				<div className="md:hidden border-t border-border bg-white/95 backdrop-blur-md shadow-sm">
-					<div className="flex flex-col items-center py-4 space-y-3">
+				<div className="fixed top-18 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-md md:hidden transition-all ease-in-out duration-300">
+					<div className="bg-white/95 backdrop-blur-xl rounded-3xl border border-gray-200/50 shadow-2xl shadow-violet-500/10 p-4 space-y-2">
 						{status === "loading" ? (
-							<p className="text-gray-400 text-sm">Loading...</p>
+							<div className="flex justify-center py-4">
+								<div className="flex gap-1">
+									<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce"></div>
+									<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce delay-100"></div>
+									<div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce delay-200"></div>
+								</div>
+							</div>
 						) : session?.user ? (
 							<>
-								<span className="text-sm text-gray-700">
-									👋 Hello, <strong>{session.user.name}</strong>
-								</span>
+								<div className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-violet-50 to-purple-50 rounded-2xl">
+									<Sparkles className="w-4 h-4 text-violet-600" />
+									<span className="text-sm font-medium text-gray-800">
+										Hi, {session.user.name}
+									</span>
+								</div>
 								<button
-									onClick={() => signOut({ callbackUrl: "/page/login" })}
-									className="flex items-center gap-2 text-sm font-medium text-danger hover:text-red-600 bg-red-50 px-3 py-2 rounded-lg transition-all duration-200"
+									onClick={() => {
+										signOut({ callbackUrl: "/page/login" });
+										setMenuOpen(false);
+									}}
+									className="w-full px-4 py-3 text-sm font-medium text-red-600 hover:text-white hover:bg-red-500 rounded-2xl border border-red-200 hover:border-red-500 transition-all duration-200 cursor-pointer"
 								>
-									<LogOut className="w-4 h-4" />
-									Logout
+									<span className="flex items-center justify-center gap-2">
+										<LogOut className="w-4 h-4" />
+										Logout
+									</span>
 								</button>
 							</>
 						) : (
 							<>
 								<Link
 									href="/page/login"
-									className="flex items-center gap-2 text-sm text-gray-700 hover:text-accent transition-colors"
 									onClick={() => setMenuOpen(false)}
+									className="block w-full px-4 py-3 text-center text-sm font-medium text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-2xl transition-all"
 								>
-									<LogIn className="w-4 h-4" />
-									Login
+									<span className="flex items-center justify-center gap-2">
+										<LogIn className="w-4 h-4" />
+										Login
+									</span>
 								</Link>
 								<Link
 									href="/page/signup"
-									className="flex items-center gap-2 text-sm text-gray-700 hover:text-accent transition-colors"
 									onClick={() => setMenuOpen(false)}
+									className="block w-full px-4 py-3 text-center text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl transition-all duration-200"
 								>
-									<UserPlus className="w-4 h-4" />
-									Signup
+									<span className="flex items-center justify-center gap-2">
+										<UserPlus className="w-4 h-4" />
+										Sign Up
+									</span>
 								</Link>
 							</>
 						)}
 					</div>
 				</div>
 			)}
-		</nav>
+
+			{/* Spacer for content below */}
+			<div className="h-24"></div>
+		</>
 	);
 }
