@@ -43,7 +43,6 @@ export default function SignupPage() {
 	return (
 		<div className="flex items-center justify-center min-h-fit bg-surface px-4 py-8 border-0">
 			<div className="w-full max-w-md">
-				{/* Logo/Brand Section */}
 				<div className="text-center mb-8">
 					<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent-light mb-4 shadow-lg">
 						<svg

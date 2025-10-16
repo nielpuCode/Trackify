@@ -148,7 +148,7 @@ export default function TaskTable({
 
 	return (
 		<div>
-			{/* Desktop View - Hidden on Mobile */}
+			{/* For desktop view */}
 			<div className="hidden lg:block bg-card border border-border rounded-2xl overflow-hidden">
 				<div className="overflow-x-auto">
 					<table className="w-full">
@@ -356,7 +356,7 @@ export default function TaskTable({
 				</div>
 			</div>
 
-			{/* Mobile View - Hidden on Desktop */}
+			{/* For mobile view */}
 			<div className="lg:hidden space-y-4">
 				{filtered_task_list.map((task) => (
 					<div

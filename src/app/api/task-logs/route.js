@@ -2,7 +2,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-// Get all logs for a specific task
 export async function GET(req) {
 	try {
 		const { searchParams } = new URL(req.url);

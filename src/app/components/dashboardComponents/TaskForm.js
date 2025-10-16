@@ -16,7 +16,7 @@ export default function TaskForm({
 				onSubmit={handle_add_new_task}
 				className="relative bg-gradient-to-br from-white to-violet-50/30 border border-violet-100 rounded-3xl p-6 overflow-hidden"
 			>
-				{/* Form Fields */}
+				{/* Form area */}
 				<div className="relative space-y-4">
 					{/* Task Title */}
 					<div className="group">
@@ -54,7 +54,7 @@ export default function TaskForm({
 						</div>
 					</div>
 
-					{/* Submit Button */}
+					{/* Add Button */}
 					<div className="pt-2">
 						<button
 							type="submit"

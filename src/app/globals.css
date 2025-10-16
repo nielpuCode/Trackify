@@ -1,13 +1,14 @@
+/* src/app/global.css */
 @import "tailwindcss";
 @theme {
-	--color-accent: #8b5cf6; /* main accent - purple */
-	--color-accent-light: #a78bfa; /* secondary accent - light purple */
-	--color-surface: #fafafa; /* light background */
-	--color-text: #1a1a1a; /* dark text */
-	--color-card: #ffffff; /* surface for cards */
-	--color-dark: #000000; /* pure black */
-	--color-danger: #ef4444; /* red (logout, errors) */
-	--color-success: #10b981; /* green for success states */
-	--color-border: #e5e5e5; /* subtle borders */
-	--color-muted: #6b7280; /* muted text */
+	--color-accent: #8b5cf6;
+	--color-accent-light: #a78bfa;
+	--color-surface: #fafafa;
+	--color-text: #1a1a1a;
+	--color-card: #ffffff;
+	--color-dark: #000000;
+	--color-danger: #ef4444;
+	--color-success: #10b981;
+	--color-border: #e5e5e5;
+	--color-muted: #6b7280;
 }

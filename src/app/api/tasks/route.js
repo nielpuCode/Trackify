@@ -32,7 +32,7 @@ export async function POST(request) {
 			data: {
 				title,
 				description,
-				status: "Belum Dimulai", // default starting status
+				status: "Belum Dimulai",
 			},
 		});
 

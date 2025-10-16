@@ -7,10 +7,8 @@ export default async function HomePage() {
 	const session = await getServerSession(authOptions);
 
 	if (!session) {
-		// Redirect to login page if not logged in
 		redirect("/page/login");
 	}
 
-	// Redirect logged-in user to dashboard
 	redirect("/page/dashboard");
 }

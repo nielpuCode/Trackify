@@ -10,7 +10,7 @@ export default function TaskLogsModal({
 	return (
 		<div className="fixed inset-0 bg-dark/70 flex justify-center items-center p-4 z-50 cursor-default">
 			<div className="bg-card rounded-3xl shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden border border-border">
-				{/* Header */}
+				{/* The header */}
 				<div className="bg-gradient-to-r from-accent to-accent-light p-6 text-white">
 					<div className="flex items-start justify-between gap-4">
 						<div className="flex items-start gap-4">
@@ -57,7 +57,7 @@ export default function TaskLogsModal({
 					</div>
 				</div>
 
-				{/* Content */}
+				{/* The content */}
 				<div className="p-6 max-h-[calc(85vh-200px)] overflow-y-auto">
 					{selected_task_log.length === 0 ? (
 						<div className="text-center py-16">
